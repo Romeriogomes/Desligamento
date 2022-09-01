@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="ndenutrien.jpg">
+
+       <title>Bonus</title>
+        <style>
+            *{
+                padding: 0;
+                margin: 0;
+                
+            }
+
+            
+            .fundo{
+            background-image: linear-gradient(rgb(86, 230, 86));
+            color: white;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            height: 100vh;
+            text-align: center;
+            background-image: url(index.jpg);
+            
+            }
+            .Desligamento:hover {
+                opacity: 0,095;
+            }
+            .Desligamento{ 
+            position: absolute;
+            background-color: rgba(214, 205, 205, 0.5);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 10px;
+            padding: 20px;
+            }
+            #resultado{
+            font-style: italic;
+            width: 300px;
+            height: 70px;   
+            margin: 10px;
+            font-size: 16px;
+            color: rgb(126, 121, 121);
+            text-align: center;
+            padding: 40px;
+            background-color:rgba(167, 157, 157, 0.5);
+            
+            }
+            .botao{
+           padding: 2px;
+           width: 100px;
+           height: 70px;
+           font-size: 15px;
+           text-align: center;
+           cursor: pointer;
+           background-color: rgb(31,31,31);
+           border: none;
+           color: #fff;
+           margin: 18px;
+           border-radius: 5px;
+           transition: transform 1s;
+           transform: translateX(5) scale(0.2);
+        
+        }
+        .botao:hover,
+        .botao:focus {
+          transform: translateX(10px) scale(0.9);
+        }
+        .Imput{
+            font-style: italic;
+            
+            width: 300px;
+            height: 60px;   
+            margin: 10px;
+            font-size: 16px;
+            color: rgb(126, 121, 121);
+            text-align: right;
+            padding: 30px;
+            background-color:rgba(167, 157, 157, 0.5); 
+            border: none;
+        }
+        .saidatexto{
+            font-style: italic;
+            font: bold;
+            width: 300px;
+            height: 65px;   
+            margin: 10px;
+            font-size: 15px;
+            color: rgb(194, 17, 17);
+            text-align: initial;
+            border: none;
+            text-size-adjust: 15px;
+            padding: 30px;
+            background-color:rgba(167, 157, 157, 0.5); 
+            
+        }
+        #gif{
+            background-image: url(nyan.webp);
+        }
+      
+    </style>
+    
+    <audio id ="audio" src="acaba.mp3"></audio>
+    <audio id ="audio1" src="acabou.mp3"></audio>
+    <audio id="uou" src="uau.mp3"></audio>
+    
+    
+  </head>
+<body>
+    <script>
+        
+        function telainicial(){
+    document.getElementById('resultado').innerHTML = "não abra esse arquivo em ambiente corporativo ok? eles podem ver tudo que fazemos";
+}
+    
+function calll(){
+     var salario = document.getElementById('sala');
+     var dataentrada = document.getElementById('adm');
+     var saldodesalario =  1.033333 * salario.value;
+     var decimoterceiro = (salario.value / 12)*10;
+     var decimoaviso = ((salario.value / 12)*10)/10;
+     var feriasvencidas =  (salario.value / 12)*10;
+     var feriaspropor = ((salario.value / 12)*10)/10;
+     var tercodeferias = (feriasvencidas + feriaspropor)/3;
+     var inss = (saldodesalario *10.3)/100;
+     var irrf = ((saldodesalario *15)/100)-354.8;
+     var inssdecimo = ((decimoterceiro + decimoaviso) *9.8)/100;
+     var irrfdecimo = (((decimoterceiro + decimoaviso) *15)/100)-354.8;
+     var desli = document.getElementById('admout');
+     var dataInicio = new Date(document.getElementById("adm").value);
+     var dataFim = new Date(document.getElementById("admout").value);
+     let tempoemdias = 1000 * 60 * 60 *24;
+     let totalemdias = (dataFim - dataInicio)/tempoemdias;
+     let meses =Math.round(totalemdias/30);
+     var fgts =  Math.round((salario.value *8)/100)*meses;
+     var fgtsformat = fgts.toLocaleString('pt-BR');
+     var resisao = Math.round(saldodesalario + decimoterceiro + decimoaviso + feriasvencidas + feriaspropor + tercodeferias -(inss + irrf + inssdecimo + irrfdecimo));
+     var resisaoformat = resisao.toLocaleString('pt-BR');
+     var multa =  Math.round(fgts*40 )/100;
+     var multaformat = multa.toLocaleString('pt-BR');
+     var bonus =  Math.round((salario.value /2)*6)+ (salario.value*2);
+     var bonusformat = bonus.toLocaleString('pt-BR');
+     var total =  Math.round(resisao+fgts+multa+bonus);
+     var totalformat = total.toLocaleString('pt-BR');
+     var textoresi =  " Resisão ....................................R$ ";
+     var textofgts =  " Saldo de Fgts ...........................R$ ";
+     var textoMulta = " Multa Fgts ................................R$ ";
+     var textobonus = " Bônus .......................................R$ ";
+     var textototal = " Total ..........................................R$ ";
+     document.getElementById('text').innerHTML = (textoresi + resisaoformat + textofgts + fgtsformat + textoMulta + multaformat + textobonus + bonusformat + textototal + totalformat); 
+     uou();
+    
+    
+}
+function diasrestante(){
+    let Desligamento = new Date('2022-10-31 00:00:00');
+    
+    const datas = new Date();
+   
+    let difdata = Math.abs(Desligamento - datas);
+    let tempoemdias = 1000 * 60 * 60 *24;
+    let difdias = difdata / tempoemdias;
+    difdias = Math.round(difdias)
+    let texto1 = "Ola ! Falta "
+    let texto2 = " dias para seu Desligamento.      Tchau !"
+    document.getElementById('resultado').innerHTML = texto1 + difdias + texto2;
+    
+    if (difdias === 1) {
+        document.getElementById('resultado').innerHTML = "Acabou !! "
+        acabou();
+    } 
+    else{ 
+        acabalogo();
+    }
+       
+    
+
+    
+
+    
+} 
+function acabalogo(){
+    
+    const audio = document.getElementById('audio')
+    audio.play()
+
+}
+function acabou(){
+    const audio1 = document.getElementById('audio1')
+    audio1.play()
+}
+function uou(){
+    const audio1 = document.getElementById('uou')
+    audio1.play()
+}
+
+    </script>   
+    <div class="fundo">
+             <div class="Desligamento">
+                <h1> F . EX . N </h1>
+                 <div class="Imput">
+                        <input type="text" id="sala"> Insira seu salario
+                        <br><br>
+                <input type="date" id="adm"> Data de admissão
+                <input type="date" id="admout"> Data de demissão
+            </div>
+                <p class="saidatexto" id="text"></p>
+                <table>
+                    <tr>
+                        <td><button class="botao"onclick="calll()">Calcular</button></td>
+                        <td> <div class="botao" ><a href="index.html" class="botao" ><br> Inicio</a></div></td>
+                       </tr>
+                </table>
+            </div>
+            <div class="gif">
+                <h2>___</h2>
+            </div>
+        </div>
+</body>
+
+</html>
